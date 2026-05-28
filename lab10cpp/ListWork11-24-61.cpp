@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "ListWork11-24-61.h"
 #include "TNode.h"
+#include "ListWork11-24-61.h"
 
 List::List() {
     head = nullptr;
@@ -160,6 +160,10 @@ void inputList(List* list) {
     }
 }
 
+// Дан односвязный линейный список и указатель на голову списка P1. Необходимо
+// найти первый элемент, кратный 5, и вывести указатель на этот элемент списка Px. Если такого
+// элемента в списке нет, то результат должен быть равен nullptr.
+
 void ListWork11() {
     using namespace std;
 
@@ -173,14 +177,17 @@ void ListWork11() {
     TNode* P1 = list->getHead();
 
     TNode* current = P1;
-    while (current) {
-        if (current->Data % 5 == 0);
+    while (current && current->Data % 5 != 0) {
         current = current->next;
     }
 
-    if (current) cout << "Result is not nullptr" << endl;
+    if (current) cout << "Result is not nullptr, address: " << current << ", value: " << current->Data << endl;
     else cout << "Result is nullptr" << endl;
 }
+
+// Дан односвязный линейный список и указатель на голову списка P1. Необходимо
+// вставить значение M после каждого четвертого элемента списка, и вывести ссылку на последний
+// элемент полученного списка P2
 
 void ListWork24() {
     using namespace std;
@@ -243,6 +250,11 @@ void insertSorted(List* list, int number) {
     current->next = newNode;
 }
 
+// Дан текстовый файл, в первой строке которого хранится число N, а во второй
+// строке N целых чисел. Необходимо создать упорядоченный по возрастанию список, в который
+// поместить все эти элементы, при этом очередной элемент вставлять в список так, чтобы не
+// нарушалась его упорядоченность.
+
 void ListWork61() {
     using namespace std;
 
@@ -261,6 +273,9 @@ void ListWork61() {
         int number;
         in >> number;
         insertSorted(list, number);
+        if (cin.fail()) {
+            throw 1;
+        }
     }
     in.close();
 

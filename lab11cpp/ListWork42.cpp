@@ -33,6 +33,10 @@ void inputCircularDoubleList(CircularDoubleLinkedList* list) {
     cin >> N;
     cout << endl;
 
+    if (cin.fail()) {
+        throw 1;
+    }
+
     switch(N) {
         case 1: {
             cout << "Enter number of elements: ";
@@ -61,6 +65,12 @@ void inputCircularDoubleList(CircularDoubleLinkedList* list) {
         }
     }
 }
+
+// Дан циклический двусвязный линейный список и указатель первый
+// элемент этого списка. Необходимо удалить в списке все элементы, у которых правый и
+// левый сосед совпадают. Если таких элементов нет, то оставить список без изменений.
+// Первый и последний элементы считать соседями. В результате вернуть ссылку на
+// последний элемент полученного списка
 
 void ListWork42() {
     using namespace std;

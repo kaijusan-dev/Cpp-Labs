@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include "functions.h"
 
 int main() {
@@ -9,6 +10,17 @@ int main() {
     while (n != 0) {
         cout << "\nEnter number of task ( 0 = Exit, 1 = File6, 2 = File39, 3 = File48, 4 = Recur24 ): ";
         cin >> n;
+
+        if (cin.fail()) {
+            cin.clear();
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Please enter a NUMBER.\n";
+            continue;
+        }
+
+
         switch(n) {
             case 0: {
                 break;

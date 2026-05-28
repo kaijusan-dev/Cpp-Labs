@@ -11,10 +11,17 @@ std::list<int> inputFromConsole() {
     cout << "Enter the number of elements: ";
     cin >> n;
 
+    if (cin.fail()) {
+        throw 1;
+    }
+
     cout << "Enter elements: ";
     for (int i = 0; i < n; i++) {
         cin >> x;
         L.push_back(x);
+        if (cin.fail()) {
+            throw 1;
+        }
     }
 
     return L;
@@ -47,6 +54,10 @@ std::list<int> inputRandom() {
     cout << "Enter the number of elements: ";
     cin >> n;
 
+    if (cin.fail()) {
+        throw 1;
+    }
+
     for (int i = 0; i < n; i++) {
         L.push_back(rand() % 21 - 11);
     }
@@ -61,6 +72,10 @@ std::list<int> getList() {
 
     cout << "How to get a List? (1 = Console, 2 = File, 3 = Random): ";
     cin >> n;
+    if (cin.fail()) {
+        throw 1;
+    }
+
     switch(n) {
         case 1: {
             L = inputFromConsole();

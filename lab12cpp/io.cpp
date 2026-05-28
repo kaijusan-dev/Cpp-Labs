@@ -9,6 +9,10 @@ void getListFromConsole(std::list<int>& L, int n) {
     for (int i = 0; i < n; i++) {
         cin >> value;
         L.push_back(value);
+
+        if (cin.fail()) {
+            throw 1;
+        }
     }
 }
 
@@ -38,6 +42,10 @@ void inputList(std::list<int>& L) {
 
     int choice;
     cin >> choice;
+
+    if (cin.fail()) {
+        throw 1;
+    }
 
     switch (choice) {
 

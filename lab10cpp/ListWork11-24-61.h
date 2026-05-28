@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "TNode.h"
+
 class List {
     private:
         TNode* head;

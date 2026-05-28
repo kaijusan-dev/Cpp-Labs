@@ -1,36 +1,26 @@
 #include <iostream>
 #include <vector>
-#include <set>
+#include <map>
 #include <algorithm>
+#include "STL5Assoc17.h"
 #include "io.h"
 
-// Дан вектор V, элементами которого являются английские слова, набранные
-// заглавными буквами. Определить суммарную длину слов, начинающихся с одной и той же
-// буквы, и вывести все различные буквы, с которых начинаются элементы вектора V, вместе с
-// суммарной длиной этих элементов (в алфавитном порядке букв); длину выводить сразу после
-// соответствующей буквы. Использовать вспомогательное отображение M, ключами которого
-// являются начальные буквы элементов вектора V, а значениями — суммарная длина этих
-// элементов. При заполнении отображения M не использовать условные конструкции
-// (достаточно операций индексирования [], инкремента и функции-члена size для строк).
-// Элементы вектора V (при заполнении отображения M) и элементы отображения M (при
-// выводе полученных результатов) перебирать в цикле с параметром-итератором
-// соответствующего контейнера.
-
-void STL5Assoc17(std::vector<int>& V0, std::vector<std::vector<int>>& VN) {
+void STL5Assoc17() {
     using namespace std;
 
-    //множество из вектора V0 чтобы не учитывать повторяющиеся элементы и все элементы были по порядку для includes
-    set<int> S0(V0.begin(), V0.end());
+    cout << "Getting vector V" << endl;
+    vector<string> V = getStringVector();
 
-    int count = 0;
+    cout << "Vector V: ";
+    printStringVector(V);
 
-    for (auto& VI : VN) {
-        set<int> SI(VI.begin(), VI.end()); // текущий вектор без повторов и отсортирован
+    map<char, int> M;
 
-        if (includes(SI.begin(), SI.end(), S0.begin(), S0.end())) {
-            count++;
-        }
+    for (vector<string>::iterator it = V.begin(); it != V.end(); ++it) {
+        M[(*it)[0]] += it->size();
     }
 
-    cout << "Count of vectors that include V0: " << count << endl;
+    for (map<char, int>::iterator it = M.begin(); it != M.end(); ++it) {
+        cout << it->first << " " << it->second << endl;
+    }
 }

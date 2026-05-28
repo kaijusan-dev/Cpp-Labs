@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Dynamic14.h"
 #include "TNode.h"
+#include "Dynamic14.h"
 
 class Queue {
     private:
@@ -65,6 +65,10 @@ class Queue {
         }
 };
 
+// Дан набор из 10 чисел. Создать очередь, содержащую данные числа в указанном
+// порядке (первое число будет размещаться в начале очереди, последнее — в конце), и вывести
+// указатели P1 и P2 на начало и конец очереди
+
 void Dynamic14() {
     using namespace std;
 
@@ -75,6 +79,10 @@ void Dynamic14() {
         int x;
         cin >> x;
         queue->Push(x);
+
+        if (cin.fail()) {
+             throw 1;
+        }
     }
 
     cout << "Original queue: ";

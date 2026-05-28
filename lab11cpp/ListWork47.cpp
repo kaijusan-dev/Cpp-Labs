@@ -33,6 +33,10 @@ void inputTListB(TListB* list) {
     cin >> N;
     cout << endl;
 
+    if (cin.fail()) {
+        throw 1;
+    }
+
     switch(N) {
         case 1: {
             cout << "Enter number of elements: ";
@@ -62,6 +66,16 @@ void inputTListB(TListB* list) {
     }
 }
 
+// Даны указатели P1 и P2 на барьерный и текущий элементы двусвязного
+// списка (о списке с барьерным элементом см. задание ListWork46). Также дано число N (>
+// 0) и набор из N чисел. Описать тип TListB — запись с полями Barrier и Current типа PNode
+// (поля указывают соответственно на барьерный и текущий элементы списка) — и
+// процедуру LBInsertLast(L, D), которая добавляет новый элемент со значением D в конец
+// списка L (L — входной и выходной параметр типа TListB, D — входной параметр целого
+// типа). Добавленный элемент становится текущим. С помощью этой процедуры добавить
+// в конец исходного списка данный набор чисел (в том же порядке) и вывести адрес
+// текущего элемента полученного списка.
+
 void ListWork47() {
     using namespace std;
 
@@ -77,11 +91,19 @@ void ListWork47() {
     int N;
     cin >> N;
 
+    if (cin.fail()) {
+        throw 1;
+    }
+
     cout << "Enter numbers: ";
     for (int i = 0; i < N; i++) {
         int x;
         cin >> x;
         list->LBInsertLast( x);
+
+        if (cin.fail()) {
+            throw 1;
+        }
     }
 
     cout << "Modified list: ";

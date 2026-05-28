@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 #include <algorithm>
 #include "functions.h"
 using namespace std;
@@ -7,8 +8,18 @@ using namespace std;
 int main() {
     int n = -1;
     while (n != 0) {
-        cout << "Enter the number of task( 1 = BackRec9, 2 = HomeDyn3, 3 = HomeDyn13, 0 - Exit ): ";
+        cout << "\nEnter the number of task( 1 = BackRec9, 2 = HomeDyn3, 3 = HomeDyn13, 0 - Exit ): ";
         cin >> n;
+
+        if (cin.fail()) {
+            cin.clear();
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Please enter a NUMBER.\n";
+            continue;
+        }
+
         switch (n) {
             case 0: {
                 break;

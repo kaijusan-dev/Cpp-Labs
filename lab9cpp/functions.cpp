@@ -4,6 +4,9 @@
 #include <vector>
 #include "functions.h"
 
+// Дано целое число K и файл, содержащий неотрицательные целые числа. Вывести K-й эле-
+// мент файла (элементы нумеруются от 1). Если такой элемент отсутствует, то вывести −1.
+
 void File6() {
     using namespace std;
     cout << "\nEnter k (index of element that need to find), n (amount of numbers in file): ";
@@ -33,6 +36,8 @@ void File6() {
 
     in.close();
 }
+
+// Дан файл целых чисел. Продублировать в нем все числа, принадлежащие диапазону 5–10.
 
 void File39() {
     using namespace std;
@@ -80,6 +85,11 @@ void File39() {
     cout << "\nModified vector have saved to file\n";
     out2.close();
 }
+
+// Даны три файла целых чисел одинакового размера с именами SA, SB, SC и строка SD.
+// Создать новый файл с именем SD, в котором чередовались бы элементы исходных файлов с од-
+// ним и тем же номером:
+// A1, B1, C1, A2, B2, C2, … 
 
 void File48() {
     using namespace std;
@@ -152,6 +162,7 @@ void File48() {
 
         cout << a << " ";
     }
+    cout << endl;
     in4.close();
 }
 
@@ -210,6 +221,12 @@ bool eval(const std::string& s, int& pos) {
 
     return false;
 }
+
+// Вывести значение логического выражения, заданного в виде строки S. Выражение опре-
+// деляется следующим образом («T» — True, «F» — False):
+// <выражение> ::= T | F | And(<параметры>) |
+// Or(<параметры>) | Not(<выражение>)
+// <параметры> ::= <выражение> | <выражение> , <параметры>
 
 void Recur24() {
     using namespace std;

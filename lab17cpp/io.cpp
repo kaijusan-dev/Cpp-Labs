@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <iomanip>
 #include <random>
 #include "io.h"
@@ -16,16 +17,63 @@ void addToTree(Node*& root, int data) {
     else addToTree(root->right, data);
 }
 
+int transform(std::string s) {
+    if(s == "+") return -1;
+    if(s == "-") return -2;
+    if(s == "*") return -3;
+    if(s == "/") return -4;
+    if(s == "^") return -5;
+    return stoi(s);
+}
+
+char printing(int x) {
+    if(x == -1) return '+';
+    if(x == -2) return '-';
+    if(x == -3) return '*';
+    if(x == -4) return '/';
+    if(x == -5) return '^';
+}
+
 void printTree(Node*& root, int h) {
     if (!root) return;
 
     printTree(root->right, h+1);
     for (int i = 0; i <= h; i++) {
-        std::cout << "   ";
+        std::cout << std::setw(4) << '  ';
+    }
+    if (root->key < 0) {
+        std::cout << std::setw(4) << printing(root->key) << std::endl;
+    } 
+    else {
+        std::cout << std::setw(4) << root->key << std::endl;
     }
     std::cout << root->key << std::endl;
-    std::cout << std::endl;
     printTree(root->left, h+1);
+}
+
+int calculate(Node* root) {
+    if(root->key >= 0) return root->key;
+    switch (root->key) {
+        case -1: return calculate(root->left) + calculate(root->right);
+        case -2: return calculate(root->left) - calculate(root->right);
+        case -3: return calculate(root->left) * calculate(root->right);
+        case -4: return calculate(root->left) / calculate(root->right);
+        case -5: return (int)pow(calculate(root->left), calculate(root->right));
+    }
+}
+
+void del(Node* root) {
+    if(!root) return;
+    del(root->left);
+    del(root->right);
+    delete root;
+}
+
+int priority(char operation) {
+    if(operation == '+' || operation == '-') return 1;
+    if(operation == '*' || operation == '/' || operation == '%') return 1;
+    if(operation == '+' || operation == '-' || operation == '-') return 1;
+    if(operation == '+' || operation == '-') return 1;
 }
 
 //обратный обход (лев, кор, прав)
@@ -64,10 +112,6 @@ Node* inputFromConsole() {
     cout << "Enter the number of elements: ";
     cin >> n;
 
-    if (cin.fail()) {
-        throw 1;
-    }
-
     cout << "Enter elements: ";
     for (int i = 0; i < n; i++) {
         cin >> x;
@@ -104,10 +148,6 @@ Node* inputRandom() {
     cout << "Enter the number of elements: ";
     cin >> n;
 
-    if (cin.fail()) {
-        throw 1;
-    }
-
     for (int i = 0; i < n; i++) {
         addToTree(root, rand() % 21 - 11);
     }
@@ -122,11 +162,6 @@ Node* getTree() {
 
     cout << "How to get a Tree? (1 = Console, 2 = File, 3 = Random): ";
     cin >> n;
-
-    if (cin.fail()) {
-        throw 1;
-    }
-
     switch(n) {
         case 1: {
             root = inputFromConsole();
